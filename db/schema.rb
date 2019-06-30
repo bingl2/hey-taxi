@@ -20,24 +20,24 @@ ActiveRecord::Schema.define(version: 2019_06_30_060425) do
     t.index ["user_id"], name: "index_access_tokens_on_user_id", unique: true
   end
 
-  create_table "passenger_request_histories", force: :cascade do |t|
-    t.integer "passenger_request_id"
+  create_table "transport_histories", force: :cascade do |t|
+    t.integer "transport_id"
     t.string "status", null: false
     t.string "description"
     t.string "use_yn", limit: 1, default: "Y", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["passenger_request_id"], name: "index_passenger_request_histories_on_passenger_request_id"
+    t.index ["transport_id"], name: "index_transport_histories_on_transport_id"
   end
 
-  create_table "passenger_requests", force: :cascade do |t|
+  create_table "transports", force: :cascade do |t|
     t.integer "passenger_id"
     t.integer "driver_id"
     t.string "destination", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["driver_id"], name: "index_passenger_requests_on_driver_id"
-    t.index ["passenger_id"], name: "index_passenger_requests_on_passenger_id"
+    t.index ["driver_id"], name: "index_transports_on_driver_id"
+    t.index ["passenger_id"], name: "index_transports_on_passenger_id"
   end
 
   create_table "users", force: :cascade do |t|
