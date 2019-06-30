@@ -1,0 +1,91 @@
+{
+  "apiVersion": "1.0",
+  "swaggerVersion": "1.2",
+  "basePath": "http://localhost:3000",
+  "resourcePath": "users",
+  "apis": [
+    {
+      "path": "/api/v1/users",
+      "operations": [
+        {
+          "summary": "회원 가입",
+          "notes": "승객, 기사가 회원 가입을 진행합니다.",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "email",
+              "type": "string",
+              "description": "계정 email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "password",
+              "type": "string",
+              "description": "비밀번호",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "password_check",
+              "type": "string",
+              "description": "비밀번호 확인",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "type",
+              "type": "string",
+              "description": "고객 유형 (Passenger, Driver)",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "name",
+              "type": "string",
+              "description": "이름",
+              "required": false
+            },
+            {
+              "paramType": "form",
+              "name": "phone_number",
+              "type": "string",
+              "description": "전화번호",
+              "required": false
+            }
+          ],
+          "nickname": "Api::V1::Users#create",
+          "method": "post"
+        }
+      ]
+    },
+    {
+      "path": "/api/v1/users/login",
+      "operations": [
+        {
+          "summary": "로그인",
+          "notes": "로그인을 진행하여 토큰을 받아오자!",
+          "parameters": [
+            {
+              "paramType": "form",
+              "name": "email",
+              "type": "string",
+              "description": "계정 email",
+              "required": true
+            },
+            {
+              "paramType": "form",
+              "name": "password",
+              "type": "string",
+              "description": "비밀번호",
+              "required": true
+            }
+          ],
+          "nickname": "Api::V1::Users#login",
+          "method": "post"
+        }
+      ]
+    }
+  ],
+  "authorizations": null
+}
