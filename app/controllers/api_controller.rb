@@ -108,10 +108,12 @@ class ApiController < ApplicationController
       INVALID_EMAIL: "유효하지 않은 이메일 주소 입니다.",
       INVALID_PASSWORD: "유효하지 않은 비밀번호 입니다.",
       INVALID_TYPE: "유효하지 않은 계정 유형입니다.",
+      INVALID_DESTINATION: "유효하지 않은 목적지입니다.",
 
       NO_PASSENGER: "승객이 아닙니다.",
       NO_DRIVER: "기사가 아닙니다.",
 
       ALREADY_SIGN_UP: "이미 가입한 사용자입니다.",
+      ALREADY_REQUEST: "이미 배차를 요청한 상태입니다.",
   }
 end
