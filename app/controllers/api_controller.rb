@@ -16,6 +16,7 @@ class ApiController < ApplicationController
     end
   end
 
+  before_action :authorize
   around_action :transactional
 
   private
@@ -78,6 +79,20 @@ class ApiController < ApplicationController
 
   def self.swagger_access_token(api, required = true)
     api.param :form, :access_token, :long, required ? :required : :optional, "Access Token"
+  end
+
+  def authorize
+    access_token = params[:access_token].to_s.strip
+
+    if access_token.present? && access_token.to_i > 0
+      token = AccessToken.find_by_access_token(access_token)
+      @user = token.user
+      fail ApiException.new(:INVALID_ACCESS_TOKEN) if @user.blank?
+    end
+  end
+
+  def require_access_token
+    fail ApiException.new(:INVALID_ACCESS_TOKEN) if @user.nil?
   end
 
   ERROR_MESSAGES = {
