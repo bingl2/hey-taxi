@@ -12,6 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2019_06_30_060425) do
 
+  create_table "access_tokens", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "access_token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_access_tokens_on_user_id", unique: true
+  end
+
   create_table "passenger_request_histories", force: :cascade do |t|
     t.integer "passenger_request_id"
     t.string "status", null: false
@@ -30,15 +38,6 @@ ActiveRecord::Schema.define(version: 2019_06_30_060425) do
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_passenger_requests_on_driver_id"
     t.index ["passenger_id"], name: "index_passenger_requests_on_passenger_id"
-  end
-
-  create_table "user_access_tokens", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "access_token", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_user_access_tokens_on_user_id"
-    t.index [nil], name: "index_user_access_tokens_on_user", unique: true
   end
 
   create_table "users", force: :cascade do |t|
