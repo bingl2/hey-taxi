@@ -83,5 +83,10 @@ class ApiController < ApplicationController
   ERROR_MESSAGES = {
       INVALID_ACCESS_TOKEN: "유효하지 않은 계정입니다.",
       INVALID_EMAIL_PASSWORD: "이메일 또는 비밀번호가 틀렸습니다.",
+      INVALID_EMAIL: "유효하지 않은 이메일 주소 입니다.",
+      INVALID_PASSWORD: "유효하지 않은 비밀번호 입니다.",
+      INVALID_TYPE: "유효하지 않은 계정 유형입니다.",
+
+      ALREADY_SIGN_UP: "이미 가입한 사용자입니다.",
   }
 end
