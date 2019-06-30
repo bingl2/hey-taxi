@@ -4,4 +4,5 @@ class TransportHistory < ApplicationRecord
 
   STATUS = %w(WAIT CANCEL PROGRESS COMPLETED)
 
+  #TODO trasnport 용 훅 만들어서 히스토리 남기기
 end
