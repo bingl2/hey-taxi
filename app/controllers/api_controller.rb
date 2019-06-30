@@ -78,21 +78,28 @@ class ApiController < ApplicationController
   end
 
   def self.swagger_access_token(api, required = true)
-    api.param :form, :access_token, :long, required ? :required : :optional, "Access Token"
+    api.param :query, :access_token, :long, required ? :required : :optional, "Access Token"
   end
 
   def authorize
-    access_token = params[:access_token].to_s.strip
+    access_token = params[:access_token]
 
     if access_token.present? && access_token.to_i > 0
       token = AccessToken.find_by_access_token(access_token)
-      @user = token.user
-      fail ApiException.new(:INVALID_ACCESS_TOKEN) if @user.blank?
+      @user = token.try(:user)
     end
   end
 
   def require_access_token
     fail ApiException.new(:INVALID_ACCESS_TOKEN) if @user.nil?
+  end
+
+  def passenger_check
+    fail ApiException.new(:NO_PASSENGER) unless @user.is_passenger?
+  end
+
+  def driver_check
+    fail ApiException.new(:NO_DRIVER) if @user.is_passenger?
   end
 
   ERROR_MESSAGES = {
@@ -101,6 +108,9 @@ class ApiController < ApplicationController
       INVALID_EMAIL: "유효하지 않은 이메일 주소 입니다.",
       INVALID_PASSWORD: "유효하지 않은 비밀번호 입니다.",
       INVALID_TYPE: "유효하지 않은 계정 유형입니다.",
+
+      NO_PASSENGER: "승객이 아닙니다.",
+      NO_DRIVER: "기사가 아닙니다.",
 
       ALREADY_SIGN_UP: "이미 가입한 사용자입니다.",
   }
