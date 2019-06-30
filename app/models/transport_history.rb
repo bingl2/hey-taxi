@@ -1,0 +1,2 @@
+class TransportHistory < ApplicationRecord
+end

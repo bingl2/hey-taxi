@@ -1,4 +1,4 @@
-class PassengerRequest < ApplicationRecord
+class Transport < ApplicationRecord
   belongs_to :passenger
   belongs_to :driver
 end

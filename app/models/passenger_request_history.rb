@@ -1,2 +1,0 @@
-class PassengerRequestHistory < ApplicationRecord
-end
