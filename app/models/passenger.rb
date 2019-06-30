@@ -7,6 +7,6 @@ class Passenger < User
   end
 
   def request_able?
-    self.transports.using.not_completed.count == 0
+    self.transports.using.not_completed.count < 1
   end
 end
