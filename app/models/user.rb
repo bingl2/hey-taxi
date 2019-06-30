@@ -6,6 +6,11 @@ class User < ApplicationRecord
       Driver: '기사'
   }
 
+  def is_passenger?
+    #TODO 기사인지, 승객인지의 여부를 조금더 고민해보기. 타입이 더 늘어날경우에는 어떻게 대처할 수 있지.
+    self.type == "Passenger"
+  end
+
   def self.type_check(type)
     TYPES.keys.include?(type.to_sym)
   end
