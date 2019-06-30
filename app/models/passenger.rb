@@ -1,3 +1,2 @@
 class Passenger < User
-
 end

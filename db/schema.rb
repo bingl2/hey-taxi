@@ -10,20 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_29_130157) do
-
-  create_table "drivers", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "belong"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_drivers_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2019_06_30_060425) do
 
   create_table "passenger_request_histories", force: :cascade do |t|
     t.integer "passenger_request_id"
-    t.string "status"
+    t.string "status", null: false
     t.string "description"
+    t.string "use_yn", limit: 1, default: "Y", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["passenger_request_id"], name: "index_passenger_request_histories_on_passenger_request_id"
@@ -32,27 +25,31 @@ ActiveRecord::Schema.define(version: 2019_06_29_130157) do
   create_table "passenger_requests", force: :cascade do |t|
     t.integer "passenger_id"
     t.integer "driver_id"
-    t.string "destination"
+    t.string "destination", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["driver_id"], name: "index_passenger_requests_on_driver_id"
     t.index ["passenger_id"], name: "index_passenger_requests_on_passenger_id"
   end
 
-  create_table "passengers", force: :cascade do |t|
+  create_table "user_access_tokens", force: :cascade do |t|
     t.integer "user_id"
+    t.string "access_token", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_passengers_on_user_id"
+    t.index ["user_id"], name: "index_user_access_tokens_on_user_id"
+    t.index [nil], name: "index_user_access_tokens_on_user", unique: true
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.string "email"
-    t.string "password"
+    t.string "email", null: false
+    t.string "password", null: false
     t.string "phone_number"
+    t.string "type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
 end
