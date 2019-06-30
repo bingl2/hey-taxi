@@ -1,3 +1,3 @@
-class Passenger < ApplicationRecord
-  belongs_to :user
+class Passenger < User
+
 end

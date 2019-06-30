@@ -1,3 +1,2 @@
-class Driver < ApplicationRecord
-  belongs_to :user
+class Driver < User
 end
