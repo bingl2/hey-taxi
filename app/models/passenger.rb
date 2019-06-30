@@ -2,7 +2,7 @@ class Passenger < User
   has_many :transports, foreign_key: 'passenger_id'
 
   def transport_request(destination)
-    # TODO 사용중인 request 가 있을 경우 리퀘스트 요청 실패하도록 수정
+    # TODO 이 부분을 레디스에 큐에 넣는게 좋을까, 기사가 확정을 할 때 넣는게 좋을까
 
   end
 
