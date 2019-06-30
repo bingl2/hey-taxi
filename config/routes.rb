@@ -7,6 +7,10 @@ Rails.application.routes.draw do
       resources :users
       post 'users/login' => 'users#login'
 
+      resources :transports
+      resources :passengers
+      resources :drivers
+
     end
   end
 end
